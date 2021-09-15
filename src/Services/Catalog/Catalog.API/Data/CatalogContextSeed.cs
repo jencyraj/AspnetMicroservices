@@ -66,7 +66,7 @@ namespace Catalog.API.Data
                   Id = "614251e44194805f57e84916",
                   Name = "Avast",
                   Category= "Antivirus",
-                  Summary ="testing summary",
+                  Summary ="testng summary",
                   Discription="testing des",
                   ImageFile ="imagefile4",
                   Price = 600.00M,
