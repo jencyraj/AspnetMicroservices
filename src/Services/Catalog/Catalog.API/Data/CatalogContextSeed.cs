@@ -18,7 +18,7 @@ namespace Catalog.API.Data
                                                                          // we are going to see a database for that
             if(!existProduct)
             {
-                productCollection.InsertManyAsync(GetPreconfiguredProducts())
+                productCollection.InsertManyAsync(GetPreconfiguredProducts());
             }
 
                                                                          
