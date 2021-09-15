@@ -60,7 +60,15 @@ namespace Catalog.API.Controllers
             var products = await _repository.GetProductsByCategory(category);
             return Ok(products);
         }
-        //[HttpPost]
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        {
+            await _repository.CreateProduct(product);
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
 
+        }
+
+
+        }
     }
-}
