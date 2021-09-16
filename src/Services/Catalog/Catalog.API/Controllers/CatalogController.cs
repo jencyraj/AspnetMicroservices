@@ -66,9 +66,17 @@ namespace Catalog.API.Controllers
         {
             await _repository.CreateProduct(product);
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
+            // Here I used rock n role theme for getting product
+            //  this is basically forwarding the calling the next APi method.
+            //Get product with given product idea
 
         }
-
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> UpdateProduct([FromBody] Product product)
+        {
+            return Ok(await _repository.UpdateProduct(product));
+        }
 
         }
     }
