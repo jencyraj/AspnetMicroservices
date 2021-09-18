@@ -6,8 +6,15 @@ services:
   basketdb:
     image: redis:alpine #alpine is a light weight image
 
+    #TEST PART
+  discountdb:
+    image: postgres #alpine is a light weight image
+
+
   portainer:
     image: portainer/portainer-ce
+  pgadmin:
+    image: dpage/pgadmin4
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -24,5 +31,7 @@ services:
 volumes:
   mongo_data:
   portainer_data:
+  postgres_data:
+  pgadmin_data:
 
   #Volumes: basically datastore that are outside of the containers and exist on the host file system.
