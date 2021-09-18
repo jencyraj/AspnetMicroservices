@@ -3,13 +3,26 @@ version: '3.4'
 services:
   catalogdb:
     image: mongo
+  basketdb:
+    image: redis:alpine #alpine is a light weight image
+
+  portainer:
+    image: portainer/portainer-ce
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Services\Catalog\Catalog.API\Dockerfile
       #one of the important part
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+
 volumes:
   mongo_data:
+  portainer_data:
 
   #Volumes: basically datastore that are outside of the containers and exist on the host file system.
