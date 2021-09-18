@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   catalogdb:
-    container_name: catalogdb
+    container_name: catalogdbs
     restart: always
     ports:
       - "27017:27017" 
@@ -12,8 +12,8 @@ services:
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString = mongodb://catalogdb:27017 ?connect=replicaSet" #most impotant part , we are not using localhost anymore
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdbs:27017" #most impotant part , we are not using localhost anymore
     depends_on:
-      - catalogdb
+      - catalogdbs
     ports:
       - "8000:80"
