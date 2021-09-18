@@ -1,3 +1,4 @@
+using Basket.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,15 @@ namespace Basket.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //  here I registering the redis connection and 
+            // config with provided localhost port
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration =Configuration.GetValue<string>("CacheSettings:ConnectionString");//"localhost:6379";
+            });
+            services.AddScoped<IBasketRepository, BasketRepository>();/* If you see any place  IBaskeRepository injected any class of the
+                                                                       into the Asp.net core aplication these will be the convert and creating
+                                                                        basket repository Object*/ 
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
